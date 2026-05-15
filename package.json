@@ -154,6 +154,13 @@
             "type": "number",
             "default": 0.66,
             "description": "Warning time multiplier (need reload)"
+          },
+          "ankiview.cardOpacity": {
+            "type": "number",
+            "default": 1,
+            "minimum": 0,
+            "maximum": 1,
+            "description": "Card opacity (0 ~ 1)"
           }
         }
       }
