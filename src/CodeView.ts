@@ -86,7 +86,12 @@ export class AnkiViewViewProvider implements vscode.WebviewViewProvider {
 			html = html.replace(images[index], `data:image/png;base64, ` + img.result);
 		}
 
-		return `<div class="card ankiview">${html}</div>`;
+		const themeKind = vscode.window.activeColorTheme.kind;
+		const isDark = themeKind === vscode.ColorThemeKind.Dark
+			|| themeKind === vscode.ColorThemeKind.HighContrast;
+		const cardClass = isDark ? 'card ankiview nightMode' : 'card ankiview';
+
+		return `<div class="${cardClass}">${html}</div>`;
 	}
 
 	public async getDecks() {
