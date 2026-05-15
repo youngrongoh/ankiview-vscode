@@ -91,7 +91,10 @@ export class AnkiViewViewProvider implements vscode.WebviewViewProvider {
 			|| themeKind === vscode.ColorThemeKind.HighContrast;
 		const cardClass = isDark ? 'card ankiview nightMode' : 'card ankiview';
 
-		return `<div class="${cardClass}">${html}</div>`;
+		const opacity = vscode.workspace.getConfiguration(ankiviewPluginId).get<number>("cardOpacity", 1);
+		const clampedOpacity = Math.min(1, Math.max(0, opacity));
+
+		return `<div class="${cardClass}" style="opacity: ${clampedOpacity};">${html}</div>`;
 	}
 
 	public async getDecks() {
